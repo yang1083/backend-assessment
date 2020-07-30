@@ -23,7 +23,7 @@ class Rotate {
         for ($i = 0; $i < $amount; $i++) {
             $a[] = $data[$i];
         }
-        var_dump($a);
+        //var_dump($a); //Used for testing result
         return $a;
     }
 }
