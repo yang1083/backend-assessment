@@ -1,14 +1,14 @@
 <?php
 namespace Sfp;
 class Rotate {
-    public $amount;
+    public $amount; //The amount needed for left shifting 
 
     function _construct($amount) {
         $this->amount = $amount;
     }
 
     public function execute($amount) {
-        $a = array();
+        $a = array(); //array holding shifted strings
         $content = file_get_contents("assets/rotate.json");
         if ($content == false) {
             echo "error getting content from json file\n";
@@ -27,5 +27,5 @@ class Rotate {
         return $a;
     }
 }
-$rotate = new Rotate(2);
-$rotate->execute(2);
+// $rotate = new Rotate(3); //Used for running function
+// $rotate->execute(3);

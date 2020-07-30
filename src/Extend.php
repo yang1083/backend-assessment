@@ -1,39 +1,16 @@
 <?php
 namespace Sfp;
-class Rotate {
-    private $amount;
-
-    function _construct($amount) {
-        $this->amount = $amount;
-    }
-
-    function execute($amount) {
-        $a = array();
-        $content = file_get_contents("assets/rotate.json");
-        if ($content == false) {
-            echo "error getting content from json file\n";
-        }
-        $data = json_decode($content, true);
-        if ($data == null) {
-            echo "error decoding json file\n";
-        }
-        for ($i = $amount; $i < count($data); $i++) {
-            $a[] = $data[$i];
-        }
-        for ($i = 0; $i < $amount; $i++) {
-            $a[] = $data[$i];
-        }
-        var_dump($a);
-        return $a;
-    }
-}
+require_once('Rotate.php');
 class Extend extends Rotate {
-    function execute($amount) {
+    function execute($amount) { 
+        //Tried overloading this function without any arguments from the parent class, it requires 1 param still(unlike Java).
+        //To bypass this I can write a magic function _call() that accepts function name and arguments dynamically
+        //but I think it would not match the instruction from README
         $array = parent::execute($amount);
-        var_dump($array[count($array) - 1]);
+        //var_dump($array[count($array) - 1]); //Used for testing result
         return $array[count($array) - 1];
     }
 }
 
-$ex= new Extend();
-$ex->execute(2);
+// $ex= new Extend(); //Used for running function
+// $ex->execute(3);
