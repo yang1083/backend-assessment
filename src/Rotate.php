@@ -11,19 +11,21 @@ class Rotate {
         $a = array();
         $content = file_get_contents("assets/rotate.json");
         if ($content == false) {
-            echo "error getting content from Json file\n";
+            echo "error getting content from json file\n";
         }
         $data = json_decode($content, true);
         if ($data == null) {
             echo "error decoding json file\n";
         }
-        foreach ($data as $array) {
-            array_push($a, substr($array, $amount).substr($array, 0, $amount));
+        for ($i = $amount; $i < count($data); $i++) {
+            $a[] = $data[$i];
+        }
+        for ($i = 0; $i < $amount; $i++) {
+            $a[] = $data[$i];
         }
         var_dump($a);
         return $a;
     }
 }
-// $rotate = new Rotate(2);
-// $rotate->execute(2);
-?>
+$rotate = new Rotate(2);
+$rotate->execute(2);
